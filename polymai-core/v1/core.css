@@ -1,0 +1,184 @@
+/* Polymai Runtime Core (theme-less)
+   - Core provides structure/components only.
+   - It does NOT ship default colors. Your app MUST define --pm-* tokens (typically in project/style.css).
+   - For strict palette prompts (e.g. “ONLY two colors”), Polymai should run in no-core mode. */
+:root{color-scheme:light}
+
+*{box-sizing:border-box}
+html{color-scheme:light;scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:var(--pm-font, Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif);
+  color:var(--pm-text);
+  background:var(--pm-bg);
+  line-height:1.55;
+}
+
+a{color:inherit}
+
+.pm-app :focus-visible{
+  outline:3px solid var(--pm-ring);
+  outline-offset:2px;
+}
+
+.pm-container{
+  max-width:var(--pm-container, 1100px);
+  margin:0 auto;
+  padding:0 var(--pm-container-pad-x, 18px);
+}
+
+.pm-section{padding:var(--pm-section-pad-y, 56px) 0}
+.pm-topbar{
+  border-bottom:1px solid var(--pm-border);
+  background:var(--pm-bg);
+  backdrop-filter:saturate(160%) blur(10px);
+}
+.pm-topbar .pm-container{padding-top:14px;padding-bottom:14px}
+.pm-nav{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.pm-link{color:inherit;text-decoration:none}
+.pm-link:hover{color:var(--pm-text);text-decoration:underline;text-underline-offset:4px}
+
+.pm-stack{display:flex;flex-direction:column;gap:12px}
+.pm-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.pm-grid{display:grid;gap:16px}
+.pm-grid.pm-grid--cards{grid-template-columns:repeat(auto-fit, minmax(240px, 1fr))}
+
+.pm-card{
+  background:var(--pm-surface, var(--pm-bg));
+  border:1px solid var(--pm-border);
+  border-radius:var(--pm-radius);
+  box-shadow:var(--pm-shadow);
+  padding:var(--pm-card-pad, 16px);
+}
+
+.pm-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  border-radius:var(--pm-btn-radius, 12px);
+  padding:var(--pm-btn-pad-y, 12px) var(--pm-btn-pad-x, 14px);
+  font-weight:700;
+  text-decoration:none;
+  border:1px solid var(--pm-border);
+  background:var(--pm-bg);
+  color:var(--pm-text);
+  cursor:pointer;
+  user-select:none;
+}
+.pm-btn:hover{border-color:var(--pm-primary);background:var(--pm-surface, var(--pm-bg))}
+.pm-btn:active{transform:translateY(1px)}
+
+.pm-btn--primary{
+  background:var(--pm-primary);
+  border-color:var(--pm-primary);
+  color:var(--pm-primary-ink);
+  box-shadow:var(--pm-shadow);
+}
+.pm-btn--primary:hover{filter:brightness(.98)}
+
+.pm-btn--ghost{
+  background:transparent;
+  border-color:var(--pm-border);
+}
+.pm-btn--ghost:hover{background:var(--pm-surface, var(--pm-bg));border-color:var(--pm-border)}
+
+.pm-label{
+  display:block;
+  font-weight:700;
+  margin:0 0 6px;
+}
+.pm-input{
+  width:100%;
+  border:1px solid var(--pm-border);
+  border-radius:var(--pm-input-radius, 12px);
+  padding:var(--pm-input-pad-y, 12px) var(--pm-input-pad-x, 12px);
+  font:inherit;
+  color:var(--pm-text);
+  background:var(--pm-bg);
+}
+.pm-input::placeholder{color:var(--pm-muted)}
+.pm-input:focus-visible{border-color:var(--pm-primary)}
+
+.pm-muted{color:var(--pm-muted)}
+.pm-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--pm-border);
+  background:var(--pm-surface, var(--pm-bg));
+  color:var(--pm-muted);
+  font-weight:600;
+  font-size:13px;
+}
+
+.pm-h1{margin:0;font-size:clamp(2rem, 4vw, 3rem);line-height:1.08;letter-spacing:-0.02em}
+.pm-h2{margin:0;font-size:1.75rem;letter-spacing:-0.01em}
+.pm-h3{margin:0;font-size:1.15rem;letter-spacing:-0.01em}
+
+@media (max-width: 720px){
+  .pm-container{padding:0 16px}
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+}
+
+/* Toast + modal base layers */
+.pm-toast-region{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  z-index:9999;
+  display:grid;
+  gap:10px;
+}
+.pm-toast{
+  background:var(--pm-surface, var(--pm-bg));
+  color:var(--pm-text);
+  border:1px solid var(--pm-border);
+  border-radius:var(--pm-toast-radius, var(--pm-radius));
+  padding:var(--pm-toast-pad-y, 10px) var(--pm-toast-pad-x, 12px);
+  box-shadow:var(--pm-shadow);
+  max-width:min(520px, calc(100vw - 32px));
+}
+.pm-toast strong{font-weight:800}
+.pm-toast .pm-toast__meta{margin-top:4px;color:var(--pm-muted);font-size:13px}
+.pm-toast--success{border-color:var(--pm-primary)}
+.pm-toast--error{border-color:var(--pm-primary)}
+.pm-toast--info{border-color:var(--pm-primary)}
+
+.pm-modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:color-mix(in srgb, var(--pm-text) 35%, transparent);
+  z-index:9998;
+  display:none;
+}
+.pm-modal-backdrop[data-open="true"]{display:block}
+.pm-modal{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:min(720px, calc(100vw - 32px));
+  background:var(--pm-bg);
+  color:var(--pm-text);
+  border:1px solid var(--pm-border);
+  border-radius:var(--pm-modal-radius, calc(var(--pm-radius) + 4px));
+  box-shadow:var(--pm-shadow);
+  overflow:hidden;
+}
+.pm-modal__head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:var(--pm-modal-head-pad-y, 12px) var(--pm-modal-head-pad-x, 12px);
+  border-bottom:1px solid var(--pm-border);
+  background:var(--pm-surface, var(--pm-bg));
+}
+.pm-modal__title{font-weight:850;letter-spacing:-.01em}
+.pm-modal__body{padding:var(--pm-modal-body-pad, 12px)}

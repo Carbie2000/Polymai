@@ -1,0 +1,115 @@
+
+:root{
+  --polymai-ai-bg: rgba(6,10,18,0.92);
+  --polymai-ai-card: rgba(255,255,255,0.06);
+  --polymai-ai-border: rgba(255,255,255,0.14);
+  --polymai-ai-text: #eaf2ff;
+  --polymai-ai-muted: #a8b4c7;
+  --polymai-ai-brand: #7dd3fc;
+  --polymai-ai-accent: #c084fc;
+}
+[data-theme="light"]{
+  --polymai-ai-bg: rgba(250,252,255,0.92);
+  --polymai-ai-card: rgba(2,6,23,0.04);
+  --polymai-ai-border: rgba(2,6,23,0.14);
+  --polymai-ai-text: #0b1220;
+  --polymai-ai-muted: #475569;
+}
+.polymai-ai-btn{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  z-index:9998;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  border:1px solid var(--polymai-ai-border);
+  border-radius:999px;
+  padding:10px 12px;
+  background:linear-gradient(135deg, rgba(125,211,252,0.18), rgba(192,132,252,0.16));
+  color:var(--polymai-ai-text);
+  cursor:pointer;
+  box-shadow:0 12px 30px rgba(0,0,0,0.25);
+  backdrop-filter: blur(10px);
+}
+.polymai-ai-dot{
+  width:10px;height:10px;border-radius:999px;
+  background:linear-gradient(135deg,var(--polymai-ai-brand),var(--polymai-ai-accent));
+}
+.polymai-ai-btn span{font:600 13px ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial}
+.polymai-ai-backdrop{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,0.50);
+  display:none;
+}
+.polymai-ai-backdrop.open{display:block}
+.polymai-ai-modal{
+  position:absolute;
+  right:16px;
+  bottom:74px;
+  width:min(520px, calc(100vw - 32px));
+  max-height:min(72vh, 720px);
+  background:var(--polymai-ai-bg);
+  border:1px solid var(--polymai-ai-border);
+  border-radius:18px;
+  box-shadow:0 22px 60px rgba(0,0,0,0.35);
+  overflow:hidden;
+}
+.polymai-ai-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 12px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border-bottom:1px solid var(--polymai-ai-border);
+}
+.polymai-ai-title{display:flex;align-items:center;gap:10px;color:var(--polymai-ai-text)}
+.polymai-ai-title strong{font:800 13px ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial}
+.polymai-ai-close{
+  border:1px solid var(--polymai-ai-border);
+  background:transparent;
+  color:var(--polymai-ai-text);
+  border-radius:12px;
+  padding:6px 10px;
+  cursor:pointer;
+}
+.polymai-ai-body{padding:12px;display:grid;gap:10px}
+.polymai-ai-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.polymai-ai-row label{font:650 12px ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;color:var(--polymai-ai-muted)}
+.polymai-ai-input, .polymai-ai-select, .polymai-ai-textarea{
+  width:100%;
+  font:500 13px ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;
+  color:var(--polymai-ai-text);
+  background:rgba(0,0,0,0.14);
+  border:1px solid var(--polymai-ai-border);
+  border-radius:14px;
+  padding:10px 12px;
+}
+[data-theme="light"] .polymai-ai-input,
+[data-theme="light"] .polymai-ai-select,
+[data-theme="light"] .polymai-ai-textarea{background:rgba(2,6,23,0.04)}
+.polymai-ai-textarea{min-height:84px;resize:vertical}
+.polymai-ai-actions{display:flex;gap:10px;flex-wrap:wrap}
+.polymai-ai-action{
+  border:0;cursor:pointer;border-radius:14px;
+  padding:10px 12px;
+  font:800 13px ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;
+  color:#071427;
+  background:linear-gradient(135deg,var(--polymai-ai-brand),var(--polymai-ai-accent));
+}
+.polymai-ai-action.secondary{
+  color:var(--polymai-ai-text);
+  border:1px solid var(--polymai-ai-border);
+  background:transparent;
+}
+.polymai-ai-status{font:600 12px ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;color:var(--polymai-ai-muted)}
+.polymai-ai-out{
+  white-space:pre-wrap;
+  word-break:break-word;
+  max-height:260px;
+  overflow:auto;
+  border-radius:14px;
+  border:1px solid var(--polymai-ai-border);
+  padding:10px 12px;
+  background:rgba(0,0,0,0.10);
+  color:var(--polymai-ai-text);
+  font:500 12.5px ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+}

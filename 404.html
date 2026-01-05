@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Snake</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./polymai-core/v1/core.css" />
+  <!-- polymai-ai-assist -->
+  <link rel="stylesheet" href="polymai-ai.css" />
+</head>
+<body>
+  <div class="pm-app">
+    <header class="pm-topbar">
+      <div class="pm-container pm-row pm-row--between pm-row--center">
+        <div class="pm-row pm-row--center" style="gap: var(--pm-3);">
+          <div id="pm-wordmark" class="pm-wordmark" aria-label="App name">SNAKE</div>
+          <span class="pm-pill" id="pm-theme-pill" aria-hidden="true">single page
+        </div>
+        <nav id="pm-nav" class="pm-nav" aria-label="Primary">
+          <a id="pm-nav-game" class="pm-link" href="#game">Game</a>
+          <a id="pm-nav-highscores" class="pm-link" href="#highscores">Highscores</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="pm-container pm-stack" id="pm-main">
+      <!-- EXT:content -->
+      <div id="app" class="pm-stack" aria-live="polite"></div>
+    </main>
+
+    <footer class="pm-container pm-section">
+      <nav id="pm-footer-nav" class="pm-nav" aria-label="Footer">
+        <a id="pm-footer-game" class="pm-link" href="#game">Game</a>
+        <a id="pm-footer-highscores" class="pm-link" href="#highscores">Highscores</a>
+      </nav>
+      <div class="pm-muted" id="pm-footer-note">Local highscores are stored in your browser.</div>
+    </footer>
+  </div>
+
+  <dialog id="snakeGameOverDialog" class="pm-dialog" aria-labelledby="snakeGameOverTitle">
+    <form method="dialog" id="snakeGameOverForm" class="pm-stack" style="gap: var(--pm-4);">
+      <div class="pm-stack" style="gap: var(--pm-2);">
+        <div class="pm-h2" id="snakeGameOverTitle">Game over</div>
+        <div class="pm-muted" id="snakeGameOverDesc">Save your score to highscores.</div>
+      </div>
+
+      <div class="pm-stack" style="gap: var(--pm-2);">
+        <label class="pm-label" for="snakePlayerName">Name</label>
+        <input class="pm-input" id="snakePlayerName" name="snakePlayerName" maxlength="24" autocomplete="nickname" placeholder="Your name" />
+      </div>
+
+      <div class="pm-row pm-row--between pm-row--center">
+        <button class="pm-btn pm-btn--ghost" type="button" id="snakeDialogCancel" aria-label="Cancel and close dialog">Cancel</button>
+        <button class="pm-btn pm-btn--primary" value="default" id="snakeDialogSave" aria-label="Save score">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="./script.js"></script>
+  <script src="./polymai-core/v1/core.js" defer></script>
+  <script type="module" src="polymai-ai.js"></script>
+</body>
+</html>

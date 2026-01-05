@@ -1,0 +1,56 @@
+{
+  "runtime": "polymai-web-core@1.0.0",
+  "themes": ["light"],
+  "font": {
+    "default": "Inter",
+    "approved": [
+      "Inter",
+      "DM Sans",
+      "Space Grotesk",
+      "Poppins",
+      "Roboto",
+      "Plus Jakarta Sans",
+      "Montserrat",
+      "IBM Plex Sans",
+      "Manrope",
+      "Lato"
+    ]
+  },
+  "css": {
+    "tokens": [
+      "--pm-bg",
+      "--pm-surface",
+      "--pm-text",
+      "--pm-muted",
+      "--pm-primary",
+      "--pm-primary-ink",
+      "--pm-border",
+      "--pm-radius",
+      "--pm-shadow"
+    ],
+    "classes": [
+      "pm-app",
+      "pm-container",
+      "pm-section",
+      "pm-topbar",
+      "pm-nav",
+      "pm-link",
+      "pm-stack",
+      "pm-row",
+      "pm-grid",
+      "pm-card",
+      "pm-btn",
+      "pm-btn--primary",
+      "pm-btn--ghost",
+      "pm-input",
+      "pm-label",
+      "pm-muted",
+      "pm-pill",
+      "pm-h1",
+      "pm-h2",
+      "pm-h3"
+    ]
+  },
+  "components": ["Modal", "Toast"],
+  "utilities": ["store", "features", "storage", "dom"]
+}

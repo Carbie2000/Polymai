@@ -1,0 +1,13 @@
+{
+  "app": {
+    "name": "SNAKE"
+  },
+  "game": {
+    "title": "Snake",
+    "subtitle": "Eat, grow, and avoid collisions."
+  },
+  "highscores": {
+    "title": "Highscores",
+    "hint": "Top 10 saved locally in this browser."
+  }
+}
