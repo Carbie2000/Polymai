@@ -1,67 +1,168 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Snake</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./style.css" />
-  <link rel="stylesheet" href="./polymai-core/v1/core.css" />
-  <!-- polymai-ai-assist -->
-  <link rel="stylesheet" href="polymai-ai.css" />
-</head>
-<body>
-  <div class="pm-app">
-    <header class="pm-topbar">
-      <div class="pm-container pm-row pm-row--between pm-row--center">
-        <div class="pm-row pm-row--center" style="gap: var(--pm-3);">
-          <div id="pm-wordmark" class="pm-wordmark" aria-label="App name">SNAKE</div>
-          <span class="pm-pill" id="pm-theme-pill" aria-hidden="true">single page
+  <head>
+    <!-- polymai:no-runtime-core -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Orchid Gift Planner</title>
+    <meta name="description" content="A simple Christmas gift planner for kids to add wishes and for family to claim or mark gifts as bought." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="pm-header" role="banner">
+      <div class="pm-shell">
+        <div class="pm-topbar">
+          <a class="pm-brand" href="#top" aria-label="Orchid Gift Planner home">
+            <img class="pm-logo" src="./assets/logo.png" alt="" width="32" height="32" />
+            <span class="pm-wordmark">Orchid Gift Planner
+          </a>
+
+          <nav id="pm-nav" class="pm-nav" aria-label="Primary">
+            <a id="pm-nav-planner" href="#planner">Planner</a>
+            <a id="pm-nav-how" href="#how">How it works</a>
+          </nav>
         </div>
-        <nav id="pm-nav" class="pm-nav" aria-label="Primary">
-          <a id="pm-nav-game" class="pm-link" href="#game">Game</a>
-          <a id="pm-nav-highscores" class="pm-link" href="#highscores">Highscores</a>
-        </nav>
       </div>
     </header>
 
-    <main class="pm-container pm-stack" id="pm-main">
-      <!-- EXT:content -->
-      <div id="app" class="pm-stack" aria-live="polite"></div>
+    <main id="main" class="pm-main" role="main">
+      <section id="top" class="pm-hero" aria-label="Intro">
+        <div class="pm-shell pm-hero-grid">
+          <div class="pm-hero-copy">
+            <h1 class="pm-h1">Wishes for kids, peace of mind for grown‑ups.</h1>
+            <p class="pm-lead">Kids add what they hope for. Parents and relatives claim items and mark what’s bought—no duplicates, no stress.</p>
+            <div class="pm-hero-cta">
+              <a class="pm-btn pm-btn-primary" href="#planner">Open planner</a>
+              <a class="pm-btn pm-btn-secondary" href="#how">See how</a>
+            </div>
+            <div class="pm-status" role="status" aria-live="polite" id="pm-status"></div>
+          </div>
+          <div class="pm-hero-art" aria-hidden="true">
+            <img class="pm-hero-img" src="./assets/hero.png" alt="" />
+          </div>
+        </div>
+      </section>
+
+      <section id="planner" class="pm-section" aria-label="Planner">
+        <div class="pm-shell">
+          <div class="pm-section-head">
+            <h2 class="pm-h2">Planner</h2>
+            <p class="pm-sub">Switch roles to keep it kid-friendly or manage purchases as an adult.</p>
+          </div>
+
+          <div class="pm-card pm-controls" aria-label="Planner controls">
+            <div class="pm-row">
+              <div class="pm-field">
+                <label for="pm-role">Mode</label>
+                <select id="pm-role" name="role">
+                  <option value="kid">Kid (add wishes)</option>
+                  <option value="adult">Adult (claim / bought)</option>
+                </select>
+              </div>
+
+              <div class="pm-field">
+                <label for="pm-active-child">Selected child</label>
+                <select id="pm-active-child" name="activeChild"></select>
+              </div>
+
+              <div class="pm-field">
+                <label for="pm-buyer-name">Buyer name (adult mode)</label>
+                <input id="pm-buyer-name" name="buyerName" type="text" autocomplete="name" />
+              </div>
+            </div>
+
+            <div class="pm-row pm-row-actions">
+              <button class="pm-btn pm-btn-secondary" type="button" id="pm-add-child-btn">Add child</button>
+              <button class="pm-btn pm-btn-secondary" type="button" id="pm-reset-btn">Reset demo data</button>
+            </div>
+
+            <p class="pm-note" id="pm-privacy-note">Kid mode hides claimed/bought info so surprises stay secret.</p>
+          </div>
+
+          <div class="pm-grid">
+            <section class="pm-card" aria-label="Add wish">
+              <h3 class="pm-h3">Add a wish</h3>
+              <form id="pm-wish-form" class="pm-form">
+                <div class="pm-field">
+                  <label for="pm-wish-title">Wish</label>
+                  <input id="pm-wish-title" name="title" type="text" required maxlength="80" />
+                </div>
+                <div class="pm-field">
+                  <label for="pm-wish-notes">Notes (size, color, etc.)</label>
+                  <textarea id="pm-wish-notes" name="notes" rows="3" maxlength="300"></textarea>
+                </div>
+                <div class="pm-field">
+                  <label for="pm-wish-link">Link (optional)</label>
+                  <input id="pm-wish-link" name="link" type="url" inputmode="url" />
+                </div>
+                <button class="pm-btn pm-btn-primary" type="submit" id="pm-add-wish">Add wish</button>
+                <p class="pm-help" id="pm-kid-help">Tip: Keep wishes specific (brand/model/size) to help grown‑ups.</p>
+              </form>
+            </section>
+
+            <section class="pm-card" aria-label="Wish list">
+              <div class="pm-list-head">
+                <h3 class="pm-h3">Wish list</h3>
+                <div class="pm-field pm-inline">
+                  <label for="pm-filter">Show</label>
+                  <select id="pm-filter" name="filter">
+                    <option value="all">All</option>
+                    <option value="open">Open</option>
+                    <option value="claimed">Claimed</option>
+                    <option value="bought">Bought</option>
+                  </select>
+                </div>
+              </div>
+
+              <ul class="pm-list" id="pm-list" aria-label="Wishes"></ul>
+              <div class="pm-empty" id="pm-empty" hidden>
+                <p class="pm-sub">No wishes yet. Add one on the left.</p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section id="how" class="pm-section" aria-label="How it works">
+        <div class="pm-shell">
+          <div class="pm-section-head">
+            <h2 class="pm-h2">How it works</h2>
+          </div>
+          <div class="pm-steps">
+            <article class="pm-card">
+              <h3 class="pm-h3">1) Add kids</h3>
+              <p class="pm-sub">Create a child profile, then select it to add wishes.</p>
+            </article>
+            <article class="pm-card">
+              <h3 class="pm-h3">2) Kids add wishes</h3>
+              <p class="pm-sub">Each wish can include notes and a link.</p>
+            </article>
+            <article class="pm-card">
+              <h3 class="pm-h3">3) Adults claim or mark bought</h3>
+              <p class="pm-sub">Use your name so everyone knows who’s handling what.</p>
+            </article>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer class="pm-container pm-section">
-      <nav id="pm-footer-nav" class="pm-nav" aria-label="Footer">
-        <a id="pm-footer-game" class="pm-link" href="#game">Game</a>
-        <a id="pm-footer-highscores" class="pm-link" href="#highscores">Highscores</a>
-      </nav>
-      <div class="pm-muted" id="pm-footer-note">Local highscores are stored in your browser.</div>
+    <footer class="pm-footer" role="contentinfo">
+      <div class="pm-shell pm-footer-inner">
+        <nav id="pm-footer-nav" class="pm-footer-nav" aria-label="Footer">
+          <a href="#planner">Planner</a>
+          <a href="#how">How it works</a>
+        </nav>
+        <p class="pm-fine">No accounts. No syncing. Runs in this browser session only.</p>
+      </div>
     </footer>
-  </div>
 
-  <dialog id="snakeGameOverDialog" class="pm-dialog" aria-labelledby="snakeGameOverTitle">
-    <form method="dialog" id="snakeGameOverForm" class="pm-stack" style="gap: var(--pm-4);">
-      <div class="pm-stack" style="gap: var(--pm-2);">
-        <div class="pm-h2" id="snakeGameOverTitle">Game over</div>
-        <div class="pm-muted" id="snakeGameOverDesc">Save your score to highscores.</div>
-      </div>
-
-      <div class="pm-stack" style="gap: var(--pm-2);">
-        <label class="pm-label" for="snakePlayerName">Name</label>
-        <input class="pm-input" id="snakePlayerName" name="snakePlayerName" maxlength="24" autocomplete="nickname" placeholder="Your name" />
-      </div>
-
-      <div class="pm-row pm-row--between pm-row--center">
-        <button class="pm-btn pm-btn--ghost" type="button" id="snakeDialogCancel" aria-label="Cancel and close dialog">Cancel</button>
-        <button class="pm-btn pm-btn--primary" value="default" id="snakeDialogSave" aria-label="Save score">Save</button>
-      </div>
-    </form>
-  </dialog>
-
-  <script src="./script.js"></script>
-  <script src="./polymai-core/v1/core.js" defer></script>
-  <script type="module" src="polymai-ai.js"></script>
-</body>
+    <script src="./script.js"></script>
+  </body>
 </html>
